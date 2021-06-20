@@ -20,10 +20,11 @@
                     <div style="font-size:24px;margin-top:40px">
                       {{scope.row.content}}
                     </div>
+                    <div >{{scope.row.colorActive}}</div>
                     <div style="margin-top:25px" @click="good(scope.$index)">
                       <vue-clap-button :size= "size"
-                      :colorNormal="scope.row.colorNormal" 
-                      :colorActive="scope.row.colorActive" />
+                      :colorNormal="scope.row.colorBefore" 
+                      :colorActive="scope.row.colorAfter" />
                     </div>
                   </template>
                 </el-table-column>
@@ -39,7 +40,7 @@
       </el-row>
       <el-row>
         <el-col :span="21" style="margin-left:75px">
-          <el-button type="primary" style="margin-top:20px" @click="answer()">发布回复</el-button>
+          <el-button type="primary" style="margin-top:20px;margin-bottom:20px" @click="answer()">发布回复</el-button>
         </el-col>
       </el-row>
     </div>
@@ -59,12 +60,16 @@
         title:window.localStorage.getItem("questionTitle"),
         content:'',        
         selectedRow:'',
-        tableData:[{userId:1,createTime:"2021-06-20 03:22:32",content:"xswl",colorNormal:"#ff0000",colorActive:"#F56C6C"},
-        {userId:2,createTime:"2021-06-29 03:22:32",content:"hello",colorNormal:"#909399",colorActive:"#ff0000"}]
+        userId:window.localStorage.getItem("userId"),       
+        tableData:[],
+        tableDataText:[],
+        tableDataColor:[],
+        colorActive:'',
+        colorNormal:'',
       }
     },
     created(){
-      this.$axios.get('./comment',{
+      this.$axios.get('./comment/',{
         params:{
           from:0,
           id:window.localStorage.getItem("userId"),
@@ -73,44 +78,88 @@
           type:"createTime"
         }
       }).then(res =>{
-        this.tableData = res.data.papers;
-        var length = this.tableData.length;
-        for(var i=0;i<length;i++){
-          this.$axios.get('./like/whether',{
+        this.tableDataText = res.data.data.data;
+        setTimeout(()=>{
+            this.likeWhether();
+        },1000)
+
+      })
+      
+    },
+
+    methods:{
+      async likeWhether(){
+        var length = this.tableDataText.length;    
+        for(let i=0;i<length;i++){  
+          let a = await this.likeWhether1(i);        
+        }
+        setTimeout(()=>{
+          this.likeWhether2();
+        },1000)
+      },
+      likeWhether1(i){
+        console.log("hello"+i);
+        this.$axios.get('./like/whether',{
             params:{
-              commentId:this.tableData[i].id,
+              commentId:this.tableDataText[i].id,
               userId:window.localStorage.getItem("userId")
             }
           }).then(res =>{
-            if(res.data=="true"){
-              this.tableData[i].colorNormal = "#F56C6C";
-              this.tableData[i].colorActive = "#909399"
+            if(res.data.data.data===true){
+                this.tableDataColor.push({
+                  id:this.tableDataText[i].id,
+                  colorBefore:"#F56C6C",
+                  colorAfter:"#909399"
+                })
             }
             else{
-              this.tableData[i].colorActive = "#909399";
-              this.tableData[i].colorActive = "#F56C6C";
+               console.log("hello")
+               this.tableDataColor.push({
+                  id:this.tableDataText[i].id,
+                  colorBefore:"#909399",
+                  colorAfter:"#F56C6C"
+                })
             }
+            console.log(this.tableDataColor.length)
           })
+      },
+      likeWhether2(){
+        console.log(this.tableDataColor);
+        var length = this.tableDataText.length;
+        for(var i=0;i<length;i++){
+          for(var j=0;j<length;j++){
+            if(this.tableDataText[i].id === this.tableDataColor[j].id){
+              this.tableData.push({
+                id:this.tableDataText[i].id,
+                userId:this.tableDataText[i].userId,
+                createTime:this.tableDataText[i].createTime,
+                content:this.tableDataText[i].content,
+                colorBefore:this.tableDataColor[j].colorBefore,
+                colorAfter:this.tableDataColor[j].colorAfter
+              })
+            }
+          }
+          
         }
-      })
-    },
-    methods:{
+      },
       good(row){
-        this.$axios.post('./like',{
-          commentId:this.tableData[row].id,
-          userId:window.localStorage.getItem("userId")
+        this.$axios.post('./like/?commentId='+this.tableData[row].id+'&userId='+parseInt(this.userId),{
+          
+            // commentId:this.tableData[row].id,
+            // userId:,
+                   
         }).then(res =>{
-          if(res.data === "点赞成功"){
+          if(res.data.data.data === "点赞成功"){
             this.$message.success("点赞成功")
           }
-          else if(res.data === "取消点赞"){
+          else if(res.data.data.data === "取消点赞"){
             this.$message("已取消点赞")
           }
         })
       },
       answer(){
         console.log(this.content);
-        this.$axios.post('./comment',{
+        this.$axios.post('./comment/',{
           content:this.content,
           questionId:this.$route.query.id,
           userId:window.localStorage.getItem("userId")

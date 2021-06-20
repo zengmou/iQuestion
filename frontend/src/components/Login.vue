@@ -49,13 +49,13 @@
     methods: {
       login (formName) {
         if(this.loginForm.identity!=''){
-          this.$axios.get('./user/login',{
+          this.$axios.post('./user/login',{
             name:this.loginForm.username,
             pwd:this.loginForm.password
           })
             .then(resp => {
               if (resp.status === 200) {
-                window.localStorage.setItem("userId",resp.data.id)
+                window.localStorage.setItem("userId",resp.data.data.id)
                 this.$message.success('登录成功');
                 this.$router.replace('/hotQuestions');
               }

@@ -71,7 +71,7 @@
     },
     methods:{
       submitQuestion(){
-          this.$axios.post('./question',{     
+          this.$axios.post('./question/',{     
             content:this.submitForm.content,
             title:this.submitForm.questionTitle,
             userId:window.localStorage.getItem('userId'),

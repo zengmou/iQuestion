@@ -81,20 +81,18 @@
         search:'',
         questionId:'',
         tableDataOrigin:[],
-        tableData: [
-            {title:"姚明为什么这么高？",content:"我要怎么知道",id:1,commentCount:10,heat:30,createTime: "2021-06-19 18:52:05"},
-            {title:"如何期末拿高分？",content:"三分靠努力，七分天注定",id:2,commentCount:15,heat:58,createTime: "2021-06-29 18:52:05"}],
+        tableData:[],
       }
     },
     created(){
-      this.$axios.get('./question',{
+      this.$axios.get('./question/',{
         params:{
           from:0,
           sum:20,
           type:"createTime"
         }
       }) .then((res)=>{
-        this.tableData = res.data;
+        this.tableData = res.data.data.data;
       })
     },
     methods:{
@@ -112,7 +110,7 @@
               type:"heat"
             }
           }).then(res =>{
-              this.tableData = res.data;
+              this.tableData = res.data.data.data;
           })
       }
     }
@@ -131,8 +129,7 @@
     background-color: #fff;
   }
   .el-table,.el-table__expanded-cell {
-    background-color: #3f5c6d2c;
-    /* background-color: transparent; */
+    background-color: transparent;
   } 
   .table{
     background-color: transparent;
