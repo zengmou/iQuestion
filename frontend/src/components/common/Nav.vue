@@ -7,16 +7,16 @@
       iQuestion
     </el-button>
     <el-submenu index="/login" style="float: right">
-      <template slot="title"><i class="el-icon-user"></i>我的</template>
-      <el-menu-item @click="message"><i class="el-icon-s-custom"></i>通知信息</el-menu-item>
-      <el-menu-item @click="myQuestions"><i class="el-icon-s-custom"></i>我发布的问题</el-menu-item>
-      <el-menu-item @click="history"><i class="el-icon-s-custom"></i>历史记录</el-menu-item>
+      <template slot="title"><i class="el-icon-s-custom"></i>我的</template>
+      <el-menu-item @click="message"><i class="el-icon-bell"></i>通知信息</el-menu-item>
+      <el-menu-item @click="myQuestions"><i class="el-icon-user"></i>我发布的问题</el-menu-item>
+      <el-menu-item @click="history"><i class="el-icon-mobile-phone"></i>历史记录</el-menu-item>
       <el-menu-item @click="quit"><i class="el-icon-switch-button"></i>退出登录</el-menu-item>
     </el-submenu>    
-    <el-menu-item @click="submitQuestions" style="float: right"><i class="el-icon-search"></i>发布问题</el-menu-item>
+    <el-menu-item @click="submitQuestions" style="float: right"><i class="el-icon-edit"></i>发布问题</el-menu-item>
     <el-menu-item @click="allQuestions" style="float: right"><i class="el-icon-search"></i>所有问题</el-menu-item>
-    <el-menu-item @click="hotQuestions" style="float: right"><i class="el-icon-search"></i>热门问题</el-menu-item>
-    <el-menu-item @click="knowledgeGraph" style="float: right"><i class="el-icon-position"></i>知识图谱</el-menu-item>
+    <el-menu-item @click="hotQuestions" style="float: right"><i class="el-icon-star-off"></i>热门问题</el-menu-item>
+    <el-menu-item @click="knowledgeMap" style="float: right"><i class="el-icon-position"></i>知识图谱</el-menu-item>
     
   </el-menu>
 </template>
@@ -74,8 +74,8 @@
       allQuestions(){
         this.$router.replace('/allQuestions')
       },
-      knowledgeGraph(){
-        this.$router.replace('/knowledgeGraph')
+      knowledgeMap(){
+        this.$router.replace('/knowledgeMap')
       },
       submitQuestions(){
         this.$router.replace('/submitQuestions')

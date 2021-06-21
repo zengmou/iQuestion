@@ -16,6 +16,9 @@ import 'lib-flexible'
 
 import moment from 'moment'
 
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
+
 Vue.use(ElementUI);
 Vue.use(VueParticles);
 Vue.use(vueClapButton);
@@ -95,3 +98,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 });
+

@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.9.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "element-ui": "^2.13.0",
     "lib-flexible": "^0.3.2",
     "moment": "^2.29.1",
@@ -26,6 +26,7 @@
     "vue-clap-button": "^1.0.6",
     "vue-particles": "^1.0.9",
     "vue-pdf": "^4.0.8",
+    "vue-resource": "^1.5.3",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.23.2",
     "vuex": "^3.1.3"

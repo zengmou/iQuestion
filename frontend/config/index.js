@@ -16,7 +16,14 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
-      }
+      },
+      // '/direction': {
+      //   target: 'https://api.ownthink.com',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/direction': ''
+      //   }
+      // },
     },
 
     // Various Dev Server settings

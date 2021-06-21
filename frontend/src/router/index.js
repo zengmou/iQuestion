@@ -7,6 +7,10 @@ import HotQuestions from '@/components/HotQuestions'
 import QuestionDetails from '@/components/QuestionDetails'
 import HelloWorld from '@/components/HelloWorld'
 import SubmitQuestions from '@/components/SubmitQuestions'
+import KnowledgeMap from '@/components/KnowledgeMap'
+import Message from '@/components/Message'
+import History from '@/components/History'
+import MyQuestions from '@/components/MyQuestions'
 
 Vue.use(Router);
 
@@ -56,6 +60,38 @@ export const router = new Router({
       path: '/submitQuestions',
       name: 'SubmitQuestions',
       component: SubmitQuestions,
+      meta:{
+        requireAuth:true
+      }
+    },
+    {
+      path: '/knowledgeMap',
+      name: 'KnowledgeMap',
+      component: KnowledgeMap,
+      meta:{
+        requireAuth:true
+      }
+    },
+    {
+      path: '/message',
+      name: 'Message',
+      component: Message,
+      meta:{
+        requireAuth:true
+      }
+    },
+    {
+      path: '/history',
+      name: 'History',
+      component: History,
+      meta:{
+        requireAuth:true
+      }
+    },
+    {
+      path: '/myQuestions',
+      name: 'MyQuestions',
+      component: MyQuestions,
       meta:{
         requireAuth:true
       }
