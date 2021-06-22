@@ -9,22 +9,22 @@
         <el-col :span="24">
           <el-row>
             <el-col :span="24">
-                <div class="head1" style="text-align: left;margin: 0.57rem 0.7rem;font-size: 1rem;font-weight:bold;margin-left:100px" >
+                <div class="head1" style="text-align: left;margin: 0.57rem 0.7rem;font-size: 0.6rem;font-weight:bold;margin-left:100px" >
                   历史记录
                 </div>
-                <div >
-                  <el-button style="margin-top: 0.5rem;margin-left: 0.15rem" @click="clean()">清空浏览历史</el-button>
+                <div class="search">
+                  <el-button style="margin-top: 0.6rem" @click="clean()">清空浏览历史</el-button>
                 </div>
               <div class="table">
                 <template>
                   <el-table :data="tableData" style="margin: 0.83rem;width: 90%;" :show-header="false">
                     <el-table-column prop="questions">
                       <template slot-scope="scope">
-                        <div @click="viewDetail(scope.$index)" style="cursor: pointer;font-size: 0.4rem;margin-bottom:20px;margin-top:10px" class="question">
+                        <div @click="viewDetail(scope.$index)" style="cursor: pointer;font-size: 0.35rem;margin-bottom:20px;margin-top:10px" class="question">
                           <i class="el-icon-search" style="margin-right:10px"></i>
                           {{scope.row.title}}
                         </div>
-                        <div style="font-family: Microsoft YaHei;font-size: 0.3rem" class="info1">
+                        <div style="font-family: Microsoft YaHei;font-size: 0.2rem" class="info1">
                           浏览时间：{{scope.row.createTime}}
                         </div>
                       </template>
@@ -95,6 +95,10 @@
   }
   .search{
     display: inline;
+    position: relative;
+    float: left;
+    left: 6%;
+  
   }
 
   .info1{

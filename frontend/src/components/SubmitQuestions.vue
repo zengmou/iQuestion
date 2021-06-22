@@ -24,10 +24,10 @@
       ></vue-particles>
       <el-row>
         <el-col :span="21">
-              <div style="margin-left:1.2rem">
+              <div style="margin-left:2.5rem">
                 <el-form :model="submitForm" :rules="rules" class="submit_container" label-position="middle"
                   label-width="0px" v-loading="loading" :ref="submitForm">
-                    <p class="submit_title" style="font-size: 1rem;font-weight:bold;padding-top:1.1rem;padding-bottom: 0.8rem;">发布问题</p>
+                    <p class="submit_title" style="font-size: 0.6rem;font-weight:bold;padding-top:1.1rem;padding-bottom: 0.8rem;">发布问题</p>
                     <el-form-item label-width="100px" label="问题题目" prop="questionTitle">
                     <el-input type="text" v-model="submitForm.questionTitle" auto-complete="off" placeholder="请输入问题题目" ref="username"></el-input>
                 </el-form-item>
@@ -71,21 +71,26 @@
     },
     methods:{
       submitQuestion(){
+        if(this.submitForm.content!==''&&this.submitForm.questionTitle!==''){
           this.$axios.post('./question/',{
             content:this.submitForm.content,
             title:this.submitForm.questionTitle,
             userId:window.localStorage.getItem('userId'),
           }).then(res =>{
-              if(res.status===200){
-                this.$message.success('发布问题成功');
-                this.$router.replace('/myQuestions')
-              }
-              else{
-                  this.$message.error('发布问题失败');
-              }
+            if(res.status===200){
+              this.$message.success('发布问题成功');
+              this.$router.replace('/myQuestions')
+            }
+            else{
+              this.$message.error('发布问题失败');
+            }
           }).catch(error =>{
-              this.$message.error('发布请求失败');
+            this.$message.error('发布请求失败');
           })
+        }
+        else{
+          this.$message.error("发布问题不能为空")
+        }  
       }
     }
 

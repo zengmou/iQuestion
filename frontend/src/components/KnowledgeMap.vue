@@ -105,7 +105,7 @@
           debug: false,
           model: { jsonPath: '/static/live2dw/live2d-widget-model-hijiki/assets/hijiki.model.json' },
           display: { position: 'right', width: 300, height: 450},
-          mobile: { show: true },
+          mobile: { show: false },
           log: false
         })
       }, 1000)
@@ -115,15 +115,21 @@
       search(){
         //var temp1 =window.localStorage.getItem('id');
         var inputValue = this.$refs.input1.value;
-        this.$axios.get('/knowledgeMap/search?question='+inputValue,{
-        })
-          .then(res=>{
-            this.answer = res.data.data.data;
-          })
+        if(inputValue!==''){
+          this.$axios.get('/knowledgeMap/search?question='+inputValue,{
+            })
+            .then(res=>{
+              this.answer = res.data.data.data;
+            })
+          setTimeout(() =>{
+            this.showBtn=true;
+          },3000);
+        }
+        else{
+          this.$message.error("输入问题不能为空")
+        }
         //this.$refs.btn1.showBtn.value=ture;
-        setTimeout(() =>{
-          this.showBtn=true;
-        },3000);
+        
       },
       submitQuestions(){
         this.$router.replace('/submitQuestions')
@@ -133,17 +139,23 @@
           confirmButtonText: '确定',
           cancelButtonText: '取消',
         }).then(({ value }) => {
-          this.$axios.post('/knowledgeMap/add',{
-            answer:value,
-            question:this.$refs.input1.value
-          }).then(res =>{
-            if(res.status===200){
-              this.$message.success('新增成功');
-            }
-            else{
-              this.$message.error('新增失败');
-            }
-          });
+          if(value!==null){
+            this.$axios.post('/knowledgeMap/add',{
+              answer:value,
+              question:this.$refs.input1.value
+            }).then(res =>{
+              if(res.status===200){
+                this.$message.success('新增成功');
+              }
+              else{
+                this.$message.error('新增失败');
+              }
+            });
+          }
+          else{
+            this.$message.error("新增答案不能为空")
+          }
+          
         });
       },
 

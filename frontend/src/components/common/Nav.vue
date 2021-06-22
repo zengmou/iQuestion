@@ -1,7 +1,7 @@
 <template>
-  <el-menu :default-active="path1" router mode="horizontal" background-color="white" text-color="#222" style="height:100%">
+  <el-menu :default-active="path1" router mode="horizontal" background-color="rgba(255,255,255,0.7)" text-color="#222" style="height:100%">
     <el-button type="text"
-               style="color: #757575; float:left;padding:0.2rem;margin-left:0.3rem;font-size:1rem;"
+               style="color: #757575; float:left;padding:0.2rem;margin-left:0.3rem;font-size:0.55rem;"
                @click="hotQuestions"
                icon="el-icon-s-promotion">
       iQuestion

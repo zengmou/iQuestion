@@ -6,9 +6,12 @@
       <el-row>
         <el-col :span="21">
           <div style="margin: 0.1rem">
-            <p style="margin-left:0.57rem;margin-top:40px;float: left;font-size: 0.42rem;" class="title">{{title}}</p>
+            <p style="margin-left:1rem;margin-top:40px;float: left;font-size: 0.6rem;" class="title">{{title}}</p>
+            <!-- <div style="font-size:0.4rem;margin-top:47px;float:left;position:relative;left:10%">
+                {{questionContent}}
+            </div> -->
             <template>
-              <el-table :data="tableData" style="width: 100%;margin-left:0.4rem" max-height="600">
+              <el-table :data="tableData" style="width: 100%;margin-left:1.8rem" max-height="600">
                 <el-table-column prop="answer">
                   <template slot-scope="scope">
                     <div style="font-size:0.2rem" class="left">
@@ -17,7 +20,7 @@
                     <div style="font-size:0.1rem" class="right">
                        回复时间：{{scope.row.createTime}}
                     </div>
-                    <div style="font-size:0.3rem;margin-top:40px">
+                    <div style="font-size:0.4rem;margin-top:40px">
                       {{scope.row.content}}
                     </div>
                     <div >{{scope.row.colorActive}}</div>
@@ -33,13 +36,13 @@
           </div>
         </el-col>
       </el-row>
-      <el-row>
-        <el-col :span="21" style="margin-left:1rem">
-          <el-input v-model="content" placeholder="请输入回复内容" style="margin-top:100px;width:80%"></el-input>
+      <el-row> 
+        <el-col :span="21" style="margin-left:1.8rem">
+          <el-input :rules="rules" v-model="content" placeholder="请输入回复内容" style="margin-top:100px;width:80%"></el-input>
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="21" style="margin-left:1rem">
+        <el-col :span="21" style="margin-left:1.8rem">
           <el-button type="primary" style="margin-top:20px;margin-bottom:20px" @click="answer()">发布回复</el-button>
         </el-col>
       </el-row>
@@ -58,6 +61,7 @@
       return{
         size:40,
         title:window.localStorage.getItem("questionTitle"),
+        //questionContent:window.localStorage.getItem("questionContent"),
         content:'',
         selectedRow:'',
         userId:window.localStorage.getItem("userId"),
@@ -66,6 +70,9 @@
         tableDataColor:[],
         colorActive:'',
         colorNormal:'',
+        rules:{
+          content:[{required: true, message: '用户名不能为空', trigger: 'blur'}],
+        }
       }
     },
     created(){
@@ -159,20 +166,23 @@
       },
       answer(){
         console.log(this.content);
-        this.$axios.post('./comment/',{
-          content:this.content,
-          questionId:this.$route.query.id,
-          userId:window.localStorage.getItem("userId")
-        }).then(res =>{
-          if(res.status === 200){
-            this.$message.success("回复成功");
-            location. reload()
-            this.$router.go(2000)
-          }
-          else{
-            this.$message.error("回复失败");
-          }
+        if(this.content!==''){
+          this.$axios.post('./comment/',{
+            content:this.content,
+            questionId:this.$route.query.id,
+            userId:window.localStorage.getItem("userId")
+          }).then(res =>{
+            if(res.status === 200){
+              this.$message.success("回复成功");
+              location. reload()
+              this.$router.go(2000)
+            }
+            else{
+              this.$message.error("回复失败");
+            }
         })
+        }
+        
       }
     }
   }
