@@ -1,7 +1,7 @@
 <template>
   <el-menu :default-active="path1" router mode="horizontal" background-color="white" text-color="#222" style="height:100%">
     <el-button type="text"
-               style="color: #757575; float:left;padding:18px;margin-left:35px;font-size:2.0em;"
+               style="color: #757575; float:left;padding:0.2rem;margin-left:0.3rem;font-size:1rem;"
                @click="hotQuestions"
                icon="el-icon-s-promotion">
       iQuestion
@@ -12,12 +12,12 @@
       <el-menu-item @click="myQuestions"><i class="el-icon-user"></i>我发布的问题</el-menu-item>
       <el-menu-item @click="history"><i class="el-icon-mobile-phone"></i>历史记录</el-menu-item>
       <el-menu-item @click="quit"><i class="el-icon-switch-button"></i>退出登录</el-menu-item>
-    </el-submenu>    
+    </el-submenu>
     <el-menu-item @click="submitQuestions" style="float: right"><i class="el-icon-edit"></i>发布问题</el-menu-item>
     <el-menu-item @click="allQuestions" style="float: right"><i class="el-icon-search"></i>所有问题</el-menu-item>
     <el-menu-item @click="hotQuestions" style="float: right"><i class="el-icon-star-off"></i>热门问题</el-menu-item>
     <el-menu-item @click="knowledgeMap" style="float: right"><i class="el-icon-position"></i>知识图谱</el-menu-item>
-    
+
   </el-menu>
 </template>
 

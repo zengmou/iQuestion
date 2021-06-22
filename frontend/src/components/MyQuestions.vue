@@ -13,33 +13,35 @@
         <el-col :span="24">
           <el-row>
             <el-col :span="24">
-              <div class="head1" style="margin: 40px 50px;margin-left:100px;text-align: left;font-size: 3.0em;font-weight:bold;" >
+              <div class="head1" style="text-align: left;margin: 0.57rem 0.7rem;font-size: 1rem;font-weight:bold;margin-left:100px" >
                 我发布的问题
               </div>
               <div class="table">
                 <template>
-                  <el-table :data="tableData" style="margin: 60px;width: 90%;" :show-header="false">
+                  <el-table :data="tableData" style="margin: 0.85rem;width: 90%;" :show-header="false">
                     <el-table-column prop="questions">
                       <template slot-scope="scope">
-                        <div @click="viewDetail(scope.$index)" style="cursor: pointer;font-size: 24px;margin-bottom:20px;margin-top:10px" class="question">
-                          <i class="el-icon-search" style="margin-right:10px"></i>
+                        <div @click="viewDetail(scope.$index)" style="cursor: pointer;font-size:0.5rem;margin-bottom:20px;margin-top:10px" class="question">
+                          <i class="el-icon-search" style="margin-right:0.3rem"></i>
                           {{scope.row.title}}
                         </div>
-                        <div style="font-family: Microsoft YaHei;font-size: 16px;margin-bottom:20px" class="content">
+                        <div style="font-family: Microsoft YaHei;font-size: 0.4rem;margin-bottom:0.5rem" class="content">
                           {{scope.row.content}}
                         </div>
-                        <div style="font-family: Microsoft YaHei;font-size: 10px" class="info1">
+                        <div style="font-family: Microsoft YaHei;font-size: 0.3rem" class="info1">
                           回复数：{{scope.row.commentCount}}
                         </div>
-                        <div style="font-family: Microsoft YaHei;font-size: 10px" class="info2">
+                        <div style="font-family: Microsoft YaHei;font-size:  0.3rem" class="info2">
                           热度：{{scope.row.heat}}
                         </div>
-                        <div style="font-family: Microsoft YaHei;font-size: 10px" class="info3">
+                        <div style="font-family: Microsoft YaHei;font-size:  0.3rem" class="info3">
                           发布时间：{{scope.row.createTime}}
                         </div>
                       </template>
 
                     </el-table-column>
+
+
                   </el-table>
                 </template>
               </div>
@@ -90,7 +92,7 @@
   }
    .el-table,.el-table__expanded-cell {
     background-color: transparent;
-  } 
+  }
 
 </style>
 
@@ -116,7 +118,7 @@
     display: inline;
     float: left;
     position: relative;
-    margin-left: 120px;
+    margin-left: 0.7rem;
   }
   .info2{
     display: inline;
@@ -126,9 +128,9 @@
   }
   .info3{
     display: inline;
-    float: left;
+    float: right;
     position: relative;
-    left: 50%;
+    margin-right:  1rem;
   }
   .table /deep/ .el-table th {
     background-color: transparent!important;

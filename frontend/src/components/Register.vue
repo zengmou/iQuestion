@@ -18,18 +18,18 @@
           hoverMode="grab"
           :clickEffect="true"
           clickMode="remove"
-      ></vue-particles>    
+      ></vue-particles>
   <el-row>
     <el-col :span="24">
       <div style="margin:0 auto;">
         <el-form :model="registerForm" :rules="rules" class="register_container" label-position="left"
                  label-width="0px" v-loading="loading" :ref="registerForm">
-          <p class="register_title" style="font-size: 2em;padding-top:120px;padding-bottom: 100px;font-weight:bold">用户注册</p>
-          <el-form-item label-width="100px" label="用户名" prop="username">           
+          <p class="register_title" style="font-size: 1rem;padding-top:120px;padding-bottom: 100px;font-weight:bold">用户注册</p>
+          <el-form-item label-width="100px" label="用户名" prop="username">
             <el-input type="text" v-model="registerForm.username" auto-complete="off" placeholder="请输入用户名" ref="username"></el-input>
           </el-form-item>
-          <el-form-item label-width="100px" label="用户密码" prop="password">    
-            <el-input type="password" v-model="registerForm.password" auto-complete="off" placeholder="请输入密码" show-password></el-input>          
+          <el-form-item label-width="100px" label="用户密码" prop="password">
+            <el-input type="password" v-model="registerForm.password" auto-complete="off" placeholder="请输入密码" show-password></el-input>
           </el-form-item>
           <el-form-item style="width: 100%;margin-top:14px;padding-top: 80px">
             <el-button type="primary" style="width: 50%;border: none;margin-top:14px" v-on:click="register(registerForm)">注册</el-button>
@@ -54,7 +54,7 @@ export default {
         password: '',
       },
       rules: {
-        // blur 失去鼠标焦点时触发验证       
+        // blur 失去鼠标焦点时触发验证
         username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
         password: [{required: true, message: '密码不能为空', trigger: 'blur'}],
       },
@@ -127,9 +127,9 @@ export default {
 </style>
 
 <style>
-  #particles-js{ 
+  #particles-js{
     width: 100%;
     height: calc(100% - 100px);
-    position: absolute;  
+    position: absolute;
   }
 </style>

@@ -5,25 +5,25 @@
     <div>
       <el-row>
         <el-col :span="21">
-          <div style="margin: 0 30px">
-            <p style="margin-left:40px;margin-top:40px;float: left;font-size: 30px;" class="title">{{title}}</p>
+          <div style="margin: 0.1rem">
+            <p style="margin-left:0.57rem;margin-top:40px;float: left;font-size: 0.42rem;" class="title">{{title}}</p>
             <template>
-              <el-table :data="tableData" style="width: 95%;margin-left:100px" max-height="600">
+              <el-table :data="tableData" style="width: 100%;margin-left:0.4rem" max-height="600">
                 <el-table-column prop="answer">
                   <template slot-scope="scope">
-                    <div style="font-size:10px" class="left">
-                      用户id：{{scope.row.userId}}     
+                    <div style="font-size:0.2rem" class="left">
+                      用户id：{{scope.row.userId}}
                     </div>
-                    <div style="font-size:10px" class="right">
+                    <div style="font-size:0.1rem" class="right">
                        回复时间：{{scope.row.createTime}}
                     </div>
-                    <div style="font-size:16px;margin-top:40px">
+                    <div style="font-size:0.3rem;margin-top:40px">
                       {{scope.row.content}}
                     </div>
                     <div >{{scope.row.colorActive}}</div>
                     <div style="margin-top:25px" @click="good(scope.$index)">
                       <vue-clap-button :size= "size"
-                      :colorNormal="scope.row.colorBefore" 
+                      :colorNormal="scope.row.colorBefore"
                       :colorActive="scope.row.colorAfter" />
                     </div>
                   </template>
@@ -34,12 +34,12 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="21" style="margin-left:75px">
+        <el-col :span="21" style="margin-left:1rem">
           <el-input v-model="content" placeholder="请输入回复内容" style="margin-top:100px;width:80%"></el-input>
         </el-col>
       </el-row>
       <el-row>
-        <el-col :span="21" style="margin-left:75px">
+        <el-col :span="21" style="margin-left:1rem">
           <el-button type="primary" style="margin-top:20px;margin-bottom:20px" @click="answer()">发布回复</el-button>
         </el-col>
       </el-row>
@@ -58,9 +58,9 @@
       return{
         size:40,
         title:window.localStorage.getItem("questionTitle"),
-        content:'',        
+        content:'',
         selectedRow:'',
-        userId:window.localStorage.getItem("userId"),       
+        userId:window.localStorage.getItem("userId"),
         tableData:[],
         tableDataText:[],
         tableDataColor:[],
@@ -84,14 +84,14 @@
         },1000)
 
       })
-      
+
     },
 
     methods:{
       async likeWhether(){
-        var length = this.tableDataText.length;    
-        for(let i=0;i<length;i++){  
-          let a = await this.likeWhether1(i);        
+        var length = this.tableDataText.length;
+        for(let i=0;i<length;i++){
+          let a = await this.likeWhether1(i);
         }
         setTimeout(()=>{
           this.likeWhether2();
@@ -139,15 +139,15 @@
               })
             }
           }
-          
+
         }
       },
       good(row){
         this.$axios.post('./like/?commentId='+this.tableData[row].id+'&userId='+parseInt(this.userId),{
-          
+
             // commentId:this.tableData[row].id,
             // userId:,
-                   
+
         }).then(res =>{
           if(res.data.data.data === "点赞成功"){
             this.$message.success("点赞成功")
@@ -182,7 +182,7 @@
   .left{
     position:absolute;
     display: flex;
-    
+
   }
   .right{
     float: right;

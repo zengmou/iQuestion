@@ -23,24 +23,24 @@
           clickMode="remove"
       ></vue-particles>
       <el-row>
-        <el-col :span="21">                     
-              <div style="margin-left:130px">
+        <el-col :span="21">
+              <div style="margin-left:1.2rem">
                 <el-form :model="submitForm" :rules="rules" class="submit_container" label-position="middle"
                   label-width="0px" v-loading="loading" :ref="submitForm">
-                    <p class="submit_title" style="font-size: 2em;font-weight:bold;padding-top:120px;padding-bottom: 60px;">发布问题</p>
-                    <el-form-item label-width="100px" label="问题题目" prop="questionTitle">           
+                    <p class="submit_title" style="font-size: 1rem;font-weight:bold;padding-top:1.1rem;padding-bottom: 0.8rem;">发布问题</p>
+                    <el-form-item label-width="100px" label="问题题目" prop="questionTitle">
                     <el-input type="text" v-model="submitForm.questionTitle" auto-complete="off" placeholder="请输入问题题目" ref="username"></el-input>
                 </el-form-item>
-                <el-form-item label-width="100px" label="具体内容" prop="content">    
-                    <el-input :rows="6" type="textarea" v-model="submitForm.content" auto-complete="off" placeholder="请输入问题内容"></el-input>          
+                <el-form-item label-width="100px" label="具体内容" prop="content">
+                    <el-input :rows="6" type="textarea" v-model="submitForm.content" auto-complete="off" placeholder="请输入问题内容"></el-input>
                 </el-form-item>
                 <el-form-item style="width: 100%;margin-top:14px;padding-top: 60px">
                     <el-button type="primary" style="width: 50%;border: none;margin-top:14px" v-on:click="submitQuestion(submitForm)">发布提问</el-button>
                 </el-form-item>
-                
+
                 </el-form>
               </div>
-           
+
         </el-col>
       </el-row>
     </div>
@@ -62,7 +62,7 @@
           content: '',
         },
         rules: {
-        // blur 失去鼠标焦点时触发验证       
+        // blur 失去鼠标焦点时触发验证
         questionTitle: [{required: true, message: '问题题目不能为空', trigger: 'blur'}],
         content: [{required: true, message: '问题内容不能为空', trigger: 'blur'}],
         },
@@ -71,7 +71,7 @@
     },
     methods:{
       submitQuestion(){
-          this.$axios.post('./question/',{     
+          this.$axios.post('./question/',{
             content:this.submitForm.content,
             title:this.submitForm.questionTitle,
             userId:window.localStorage.getItem('userId'),
@@ -96,9 +96,9 @@
   #particles-js{
    width: 100%;
    height: calc(100% - 100px);
-    position: absolute;  
+    position: absolute;
   }
- 
+
 </style>
 
 <style scoped>
