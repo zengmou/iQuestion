@@ -17,7 +17,7 @@
                     <div style="font-size:10px" class="right">
                        回复时间：{{scope.row.createTime}}
                     </div>
-                    <div style="font-size:24px;margin-top:40px">
+                    <div style="font-size:16px;margin-top:40px">
                       {{scope.row.content}}
                     </div>
                     <div >{{scope.row.colorActive}}</div>

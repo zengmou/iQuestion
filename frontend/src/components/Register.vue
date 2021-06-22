@@ -1,15 +1,30 @@
 <template>
+<div v-loading.fullscreen.lock="loading"
+      class="login"
+      element-loading-spinner="fa fa-spinner fa-pulse fa-3x fa-fw">
+  <vue-particles
+          color="#292929"
+          :particleOpacity="1"
+          :particlesNumber="80"
+          shapeType="circle"
+          :particleSize="2"
+          linesColor="#292929"
+          :linesWidth="1"
+          :lineLinked="true"
+          :lineOpacity="0.8"
+          :linesDistance="150"
+          :moveSpeed="3"
+          :hoverEffect="true"
+          hoverMode="grab"
+          :clickEffect="true"
+          clickMode="remove"
+      ></vue-particles>    
   <el-row>
-    <el-col :span="8">
-      <div>
-        <img src="../assets/background/blue.jpg" alt="blue" id="register_img">
-      </div>
-    </el-col>
-    <el-col :span="16">
-      <div>
+    <el-col :span="24">
+      <div style="margin:0 auto;">
         <el-form :model="registerForm" :rules="rules" class="register_container" label-position="left"
                  label-width="0px" v-loading="loading" :ref="registerForm">
-          <p class="register_title" style="font-size: 2em;padding-top:120px;padding-bottom: 100px;">用户注册</p>
+          <p class="register_title" style="font-size: 2em;padding-top:120px;padding-bottom: 100px;font-weight:bold">用户注册</p>
           <el-form-item label-width="100px" label="用户名" prop="username">           
             <el-input type="text" v-model="registerForm.username" auto-complete="off" placeholder="请输入用户名" ref="username"></el-input>
           </el-form-item>
@@ -26,6 +41,7 @@
       </div>
     </el-col>
   </el-row>
+</div>
 </template>
 
 <script>
@@ -107,5 +123,13 @@ export default {
     margin: auto;
     text-align: center;
     color: #72707c;
+  }
+</style>
+
+<style>
+  #particles-js{ 
+    width: 100%;
+    height: calc(100% - 100px);
+    position: absolute;  
   }
 </style>

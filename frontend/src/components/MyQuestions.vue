@@ -1,5 +1,9 @@
 <template>
-  <div>
+<div>
+  <div class="background">
+      <img :src="imgSrc" width="100%" height="100%" alt="" />
+  </div>
+  <div class="front">
     <nav-menu></nav-menu>
     <router-view/>
     <div v-loading.fullscreen.lock="loading"
@@ -45,6 +49,7 @@
       </el-row>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -57,6 +62,7 @@
     },
     data(){
       return{
+        imgSrc:require('../assets/background/1.png'),
         questionId:'',
         tableData:[],
       }
@@ -82,10 +88,22 @@
   .table{
     background-color: transparent;
   }
+   .el-table,.el-table__expanded-cell {
+    background-color: transparent;
+  } 
 
 </style>
 
 <style scoped>
+  .background{
+    width:80%;
+    height:100%;
+    z-index:-1;
+    position: fixed;
+  }
+  .front{
+    z-index:1;
+  }
   .head1{
     display: inline;
     float: left;

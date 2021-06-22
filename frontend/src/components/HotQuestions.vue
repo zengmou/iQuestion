@@ -1,27 +1,12 @@
 <template>
-  <div>
+<div>
+  <div class="background">
+      <img :src="imgSrc" width="100%" height="100%" alt="" />
+  </div>
+  <div class="front">
     <nav-menu></nav-menu>
     <router-view/>
-    <div v-loading.fullscreen.lock="loading"
-      class="login"
-      element-loading-spinner="fa fa-spinner fa-pulse fa-3x fa-fw">
-      <vue-particles
-          color="#292929"
-          :particleOpacity="1"
-          :particlesNumber="80"
-          shapeType="circle"
-          :particleSize="2"
-          linesColor="#292929"
-          :linesWidth="1"
-          :lineLinked="true"
-          :lineOpacity="0.8"
-          :linesDistance="150"
-          :moveSpeed="3"
-          :hoverEffect="true"
-          hoverMode="grab"
-          :clickEffect="true"
-          clickMode="remove"
-      ></vue-particles>
+    <div>
       <el-row>
         <el-col :span="24">
           <el-row>
@@ -62,6 +47,7 @@
       </el-row>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -74,6 +60,7 @@
     },
     data(){
       return{
+        imgSrc:require('../assets/background/1.png'),
         questionId:'',
         tableDataOrigin:[],
         tableData:[],
@@ -113,14 +100,18 @@
   .table{
       background-color: transparent;
   }
-  #particles-js{
-   width: 100%;
-   height: calc(100% - 100px);
-   position: absolute;  
- }
 </style>
 
 <style scoped>
+  .background{
+    width:80%;
+    height:100%;
+    z-index:-1;
+    position: fixed;
+  }
+  .front{
+    z-index:1;
+  }
   .info1{
     display: inline;
     float: left;
